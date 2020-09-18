@@ -33,23 +33,24 @@ namespace WebApplication3
                     {
                         Configuration = new Saml2Configuration
                         {
-                            Issuer = ConfigurationManager.AppSettings["Saml2:Issuer"],
-                            SingleSignOnDestination = new Uri(ConfigurationManager.AppSettings["Saml2:SingleSignOnDestination"]),
-                            SingleLogoutDestination = new Uri(ConfigurationManager.AppSettings["Saml2:SingleLogoutDestination"]),
-                            SignatureAlgorithm = ConfigurationManager.AppSettings["Saml2:SignatureAlgorithm"],
-                            SigningCertificate = CertificateUtil.Load(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings["Saml2:SigningCertificateFile"]), ConfigurationManager.AppSettings["Saml2:SigningCertificatePassword"]),
+                            Issuer = ConfigurationManager.AppSettings["Issuer"],
+                            SingleSignOnDestination = new Uri(ConfigurationManager.AppSettings["SingleSignOnDestination"]),
+                            SingleLogoutDestination = new Uri(ConfigurationManager.AppSettings["SingleLogoutDestination"]),
+                            SignatureAlgorithm = ConfigurationManager.AppSettings["SignatureAlgorithm"],
+                            SigningCertificate = CertificateUtil.Load(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings["SigningCertificateFile"]), ConfigurationManager.AppSettings["SigningCertificatePassword"],
+                                X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable),
 
-                            CertificateValidationMode = (X509CertificateValidationMode)Enum.Parse(typeof(X509CertificateValidationMode), ConfigurationManager.AppSettings["Saml2:CertificateValidationMode"]),
-                            RevocationMode = (X509RevocationMode)Enum.Parse(typeof(X509RevocationMode), ConfigurationManager.AppSettings["Saml2:RevocationMode"]),
+                            CertificateValidationMode = (X509CertificateValidationMode)Enum.Parse(typeof(X509CertificateValidationMode), ConfigurationManager.AppSettings["CertificateValidationMode"]),
+                            RevocationMode = (X509RevocationMode)Enum.Parse(typeof(X509RevocationMode), ConfigurationManager.AppSettings["RevocationMode"]),
                             AudienceRestricted = true,
-                            AllowedIssuer = ConfigurationManager.AppSettings["Saml2:Issuer"]
+                            AllowedIssuer = ConfigurationManager.AppSettings["Issuer"]
                         },
                         RelyingParties = new List<RelyingParty>(),
                     };
 
-                    _instance.Configuration.AllowedAudienceUris.Add(ConfigurationManager.AppSettings["Saml2:Issuer"]);
+                    _instance.Configuration.AllowedAudienceUris.Add(ConfigurationManager.AppSettings["Issuer"]);
 
-                    _instance.RelyingParties.Add(new RelyingParty() { Metadata = ConfigurationManager.AppSettings["Saml2:RelyingPartyMetadata"] });
+                    _instance.RelyingParties.Add(new RelyingParty() { Metadata = ConfigurationManager.AppSettings["RelyingPartyMetadata"] });
                 }
             }
         }

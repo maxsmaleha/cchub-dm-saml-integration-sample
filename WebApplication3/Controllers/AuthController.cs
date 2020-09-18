@@ -5,6 +5,7 @@ using ITfoxtec.Identity.Saml2.Schemas.Metadata;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Claims;
@@ -42,8 +43,7 @@ namespace WebApplication3.Controllers
                     new Claim(ClaimTypes.NameIdentifier, User.Identity.Name),
                     new Claim(ClaimTypes.Name, User.Identity.Name),
                     new Claim(ClaimTypes.Email, User.Identity.Name),
-                    new Claim("shopUrl", "https://localhost:44337/"),
-                    new Claim("tenancyName", "docketManagerTest"),
+                    new Claim("tenancyName", "docketManager"),
                     new Claim("userRole", "admin"),
                     new Claim("userId", User.Identity.GetUserId()),
                 };
