@@ -42,7 +42,8 @@ namespace WebApplication3.Controllers
                     new Claim(ClaimTypes.NameIdentifier, User.Identity.Name),
                     new Claim(ClaimTypes.Name, User.Identity.Name),
                     new Claim(ClaimTypes.Email, User.Identity.Name),
-                    new Claim("tenancyName", "docketManager"),
+                    new Claim("shopUrl", "https://localhost:44337/"),
+                    new Claim("tenancyName", "docketManagerTest"),
                     new Claim("userRole", "admin"),
                     new Claim("userId", User.Identity.GetUserId()),
                 };

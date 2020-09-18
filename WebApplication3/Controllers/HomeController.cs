@@ -34,5 +34,11 @@ namespace WebApplication3.Controllers
 
             return View("BackOffice", model);
         }
+
+        public ActionResult Products()
+        {
+            return View("Products", TestProducts.Products);
+        }
+
     }
 }
