@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "BackOffice";
+}
+
+<small>Customer's Canvas Hub BackOffice is loaded in this iframe. </small>
+@if (Model.LoginUrl != null)
+{
+    <iframe src="@Model.LoginUrl"></iframe>
+}

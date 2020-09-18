@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Configuration;
 using System.Web.Mvc;
+using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
@@ -25,6 +23,16 @@ namespace WebApplication3.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult BackOffice()
+        {
+            var model = new BackOfficeViewModel
+            {
+                LoginUrl = $"{ConfigurationManager.AppSettings["BackOfficeFrontendUrl"]}account/login/docket-manager-saml"
+            };
+
+            return View("BackOffice", model);
         }
     }
 }
